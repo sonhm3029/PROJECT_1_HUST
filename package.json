@@ -1,0 +1,28 @@
+{
+  "name": "project_1_hust",
+  "version": "1.0.0",
+  "description": "Members:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonmh2329/PROJECT_1_HUST.git"
+  },
+  "author": "Hoang Minh Son",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sonmh2329/PROJECT_1_HUST/issues"
+  },
+  "homepage": "https://github.com/sonmh2329/PROJECT_1_HUST#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.16"
+  }
+}
