@@ -11,7 +11,7 @@ Members:
 2. Trong Cửa sổ terminal gõ:
 
 ```cmd
-yarn 
+npm install
 ```
 
 Để tải về các module đã install được ghi trong file package.json
@@ -19,7 +19,7 @@ yarn
 Sau khi tải các module cần thiết
 
 ```cmd
-yarn dev
+npm dev
 ```
 
 ## II. Cấu trúc thư mục
