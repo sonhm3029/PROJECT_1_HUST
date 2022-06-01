@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap"
       rel="stylesheet"
     />
+    <link href="stylesheets/vanillatoasts.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="fonts/icomoon/style.css" />
 
@@ -25,6 +26,7 @@
     <link rel="icon" href="images/edabk_logo.jpg" />
 
     <title>EDABK LOGIN</title>
+    <script src="js/vanillatoasts.js"></script>
   </head>
   <body>
 
@@ -45,7 +47,12 @@
                   <h3>Đăng nhập</h3>
                   <p class="mb-4">Vui lòng đăng nhập vào hệ thống !</p>
                 </div>
-                <form action="#" method="post" class="needs-validation" novalidate>
+                <form
+                  action=""
+                  method="post"
+                  class="needs-validation"
+                  novalidate
+                >
                   <div class="form-group first">
                     <label for="username">Tài khoản</label>
                     <input
@@ -84,10 +91,10 @@
 
                   <input
                     type="submit"
-                    value="Log In"
+                    value="Đăng nhập"
                     class="btn btn-block btn-primary"
+                    onclick="create()"
                   />
-
                 </form>
               </div>
             </div>
@@ -102,5 +109,10 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+      function create() { VanillaToasts.create({ title: "OK", text: "OK", type:
+      "success", icon: "X", timeout: 3000 }); } let isAuth =
+      {{isAuth}}
+    </script>
   </body>
 </html>

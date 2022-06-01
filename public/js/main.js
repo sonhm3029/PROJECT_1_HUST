@@ -26,4 +26,13 @@ $(function () {
       false
     );
   });
+  if (!isAuth) {
+    VanillaToasts.create({
+      title: "OK",
+      text: "OK",
+      type: "success",
+      icon: "X",
+      timeout: 3000,
+    });
+  }
 });
