@@ -3,7 +3,8 @@ const express = require('express');
 
 const morgan = require("morgan");
 const cors = require('cors');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 module.exports = function(app) {
     app.use(morgan('combined'));
@@ -11,5 +12,6 @@ module.exports = function(app) {
     app.use(express.json());
     app.use(express.urlencoded({extended: true}));
     app.use(express.static('public'));
+    app.use(cookieParser());
 }
 

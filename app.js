@@ -12,6 +12,7 @@ Router(app);
 app.engine('.hbs', engine({extname: '.hbs'}));
 app.set('view engine', '.hbs')
 app.set('views', './views');
+app.enable('view cache');
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT} `);

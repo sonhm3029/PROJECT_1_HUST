@@ -2,10 +2,13 @@
 
 class Authorization {
 
-    verify() {
-        let user = localStorage.getItem("user");
-        if(user) {
+    verify(req,res,next) {
+        let userId = req?.cookies?.id;
+        if(userId) {
             next();
+        }
+        else {
+            res.redirect("/login");
         }
     }
 }
