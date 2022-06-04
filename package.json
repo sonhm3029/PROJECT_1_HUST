@@ -2,10 +2,10 @@
   "name": "project_1_hust",
   "version": "1.0.0",
   "description": "Members:",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "build:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css",
-    "dev": "nodemon --inspect app.js",
+    "dev": "nodemon --inspect -e js,mjs,json,hbs app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
