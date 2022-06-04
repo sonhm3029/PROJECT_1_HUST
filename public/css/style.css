@@ -8777,3 +8777,11 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
 	}
 }
 
+
+
+/* Custom css */
+
+.hover-pointer:hover {
+    cursor: pointer;
+}
+

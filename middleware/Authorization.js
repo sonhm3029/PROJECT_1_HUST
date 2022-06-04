@@ -3,8 +3,8 @@
 class Authorization {
 
     verify(req,res,next) {
-        let userId = req?.cookies?.id;
-        if(userId) {
+        let authToken = req?.cookies?.auth_token;
+        if(authToken) {
             next();
         }
         else {
