@@ -9,7 +9,7 @@ const engine = require('express-handlebars').engine;
 Middleware(app);
 Router(app);
 
-app.engine('.hbs', engine({extname: '.hbs'}));
+app.engine('hbs', engine({extname: '.hbs'}));
 app.set('view engine', '.hbs')
 app.set('views', './views');
 app.enable('view cache');
