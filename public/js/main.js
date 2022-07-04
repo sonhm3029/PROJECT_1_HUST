@@ -172,10 +172,10 @@ const areaChartData = {
 };
 
 const pieChartData = [
-  {value:40, name:'Ai, Machine Learning'},
-  {value: 30, name:'Thiết kế số'},
-  {value: 20, name:'Security'}
-]
+  { value: 40, name: "Ai, Machine Learning" },
+  { value: 30, name: "Thiết kế số" },
+  { value: 20, name: "Security" },
+];
 
 $(function () {
   "use strict";
@@ -218,9 +218,13 @@ $(function () {
   // BreadCrumb
 
   var areaChartDom = document.getElementById("monthly-main-bar-chart");
-  var pieChartDom = document.getElementById('pie-chart-lab-field__wrapper');
+  var pieChartDom = document.getElementById("pie-chart-lab-field__wrapper");
+  var areaChartAllDom = document.getElementById("in-out-chart-all");
 
-
-  initBarChart(areaChartDom, echarts, areaChartData);
-  initPieChart(pieChartDom,echarts,  pieChartData);
+  if (window.location.pathname?.includes("/dashboard")) {
+    initBarChart(areaChartDom, echarts, areaChartData);
+  } else {
+    initBarChart(areaChartAllDom, echarts, areaChartData);
+  }
+  initPieChart(pieChartDom, echarts, pieChartData);
 });
