@@ -1,0 +1,72 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\pC\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
+
+PATH: 
+  C:\Users\pC\AppData\Local\oh-my-posh;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\MATLAB\R2017b\runtime\win64;C:\Program Files\MATLAB\R2017b\bin;C:\Users\pC\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\PostgreSQL\14\bin;C:\Users\pC\anaconda3;C:\Users\pC\anaconda3\Library\mingw-w64\bin;C:\Users\pC\anaconda3\Library\usr\bin;C:\Users\pC\anaconda3\Library\bin;C:\Users\pC\anaconda3\Scripts;C:\Users\pC\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\pC\AppData\Local\Programs\Python\Python39\;C:\Users\pC\AppData\Local\Microsoft\WindowsApps;C:\Users\pC\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\pC\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\pC\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\JetBrains\PyCharm 2021.3.2\bin;;C:\Program Files\JetBrains\DataGrip 2021.3.4\bin;
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  17.4.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: C:\Users\pC\OneDrive\Desktop\PROJECT_1_HUST\package.json: Unexpected token } in JSON at position 128
+      at JSON.parse (<anonymous>)
+      at C:\Users\pC\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\pC\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\pC\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "project_1_hust",
+    "version": "1.0.0",
+    "description": "Members:",
+    "main": "app.js",
+    "type": {
+      "module"
+    },
+    "scripts": {
+      "build:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css",
+      "dev": "nodemon --inspect -e js,mjs,json,hbs app.js",
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node app.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/sonmh2329/PROJECT_1_HUST.git"
+    },
+    "author": "Hoang Minh Son",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/sonmh2329/PROJECT_1_HUST/issues"
+    },
+    "homepage": "https://github.com/sonmh2329/PROJECT_1_HUST#readme",
+    "dependencies": {
+      "body-parser": "^1.20.0",
+      "cookie-parser": "^1.4.6",
+      "cors": "^2.8.5",
+      "dotenv": "^16.0.0",
+      "express": "^4.18.1",
+      "express-handlebars": "^6.0.6",
+      "jsonwebtoken": "^8.5.1"
+    },
+    "devDependencies": {
+      "autoprefixer": "^10.4.7",
+      "morgan": "^1.10.0",
+      "nodemon": "^2.0.16",
+      "postcss": "^8.4.13",
+      "postcss-cli": "^9.1.0",
+      "tailwindcss": "^3.0.24"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
