@@ -1,0 +1,70 @@
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+  <div class="page-block">
+    <div class="row align-items-center">
+      <div class="col-md-12">
+        <div class="page-header-title">
+          <h5>Quản lý sự kiện</h5>
+        </div>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/dashboard"><i
+                class="feather icon-home"
+              ></i></a></li>
+          <li class="breadcrumb-item"><a href="#!">Events Management</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- [ breadcrumb ] end -->
+<!-- [ Main Content ] start -->
+<div class="events-management__wrapper">
+  <div class="events-management__wrapper-header bg-white p-3">
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#ckeditorModal"
+    >
+      Viết bài
+    </button>
+  </div>
+</div>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="ckeditorModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="ckeditorModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ckeditorModalLabel">Modal title</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="editor"></div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{! CK editor }}
+<script src="/js/ckeditor/index.js"></script>
