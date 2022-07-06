@@ -1,4 +1,5 @@
 CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
+  // plugins: [ Image, ImageToolbar, ImageCaption, ImageStyle, ImageResize, LinkImage ],
   toolbar: {
     items: [
       "exportPDF",
@@ -134,6 +135,20 @@ CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
   htmlEmbed: {
     showPreviews: true,
   },
+  image: {
+    toolbar: ["toggleImageCaption", "imageTextAlternative"],
+  },
+  // image: {
+  //   toolbar: [
+  //     "imageStyle:block",
+  //     "imageStyle:side",
+  //     "|",
+  //     "toggleImageCaption",
+  //     "imageTextAlternative",
+  //     "|",
+  //     "linkImage",
+  //   ]
+  // },
   link: {
     decorators: {
       addTargetToExternalLinks: true,

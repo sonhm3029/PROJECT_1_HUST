@@ -1,0 +1,137 @@
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+  <div class="page-block">
+    <div class="row align-items-center">
+      <div class="col-md-12">
+        <div class="page-header-title">
+          <h5>Danh sách thành viên lab</h5>
+        </div>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/dashboard"><i
+                class="feather icon-home"
+              ></i></a></li>
+          <li class="breadcrumb-item"><a href="#!">Members Management</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- [ breadcrumb ] end -->
+<!-- [ Main Content ] start -->
+<div class="members-management__wrapper">
+  <div class="d-flex members-management__header bg-white p-3">
+    <button class="btn btn-primary"><i class="fas fa-plus"></i>Thêm thành viên
+      mới</button>
+    <button class="btn btn-secondary d-flex"> <input type="file" accept=".xlsx"><i class="fas fa-file-import"></i>Import
+      danh sách thành viên </button>
+    <button class="btn btn-success"><i class="fas fa-file-excel"></i>Export
+      excel danh sách thành viên</button>
+  </div>
+  <div class="members-management__filter bg-white p-3 mt-3">
+    <form>
+      <div class="form-row">
+        <div class="col">
+          <div class="form-group">
+            <label for="sortby">Sắp xếp theo ngày vào lab{{get query "sortby"}}</label>
+            <select class="form-control" id="sortby" name="sortby" value={{get query "sortby"}}>
+              <option  value="asc">Tăng dần</option>
+              <option  value="desc">Giảm dần</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="role">Chức vụ</label>
+            <select class="form-control" id="role" name="role">
+              <option value="student">Sinh viên</option>
+              <option value="teacher">Giảng viên</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="" style="color:white;">Lọc</label>
+            <button class="btn btn-primary form-control" type="submit"><i
+                class="fas fa-filter"
+              ></i>Lọc</button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+  <div class="members-management-list bg-white p-3">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Họ tên</th>
+          <th scope="col">MSSV (sinh viên)</th>
+          <th scope="col">Chức vụ</th>
+          <th scope="col">Ngày vào lab</th>
+          <th scope="col">Trạng thái</th>
+          <th scope="col">Tiện ích</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="">1</td>
+          <td class="">Hoàng Minh Sơn</td>
+          <td class="">20193081</td>
+          <td class="">Sinh viên</td>
+          <td class="">21/5/2020</td>
+          <td class="">Hoạt động</td>
+          <td class="d-flex">
+            <button
+              class="btn btn-warning d-flex justify-content-center align-items-center"
+            ><i class="fas fa-pen" style="margin-right:0px;"></i></button>
+            <button
+              class="btn btn-danger d-flex justify-content-center align-items-center"
+            ><i class="fas fa-trash" style="margin-right:0px;"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+<script>
+    var ExcelToJSON = function() {
+
+  this.parseExcel = function(file) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      var data = e.target.result;
+      var workbook = XLSX.read(data, {
+        type: 'binary'
+      });
+
+      workbook.SheetNames.forEach(function(sheetName) {
+        // Here is your object
+        var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+        var json_object = JSON.stringify(XL_row_object);
+        console.log(json_object);
+
+      })
+
+    };
+
+    reader.onerror = function(ex) {
+      console.log(ex);
+    };
+
+    reader.readAsBinaryString(file);
+  };
+};
+    let a = document.querySelector("input[type='file']");
+    a.addEventListener('change', (e) => {
+        const fileList = e.target.files;
+        console.log(fileList);
+        
+    });
+</script>

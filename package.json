@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/sonmh2329/PROJECT_1_HUST#readme",
   "dependencies": {
+    "@ckeditor/ckeditor5-image": "^34.2.0",
     "body-parser": "^1.20.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
