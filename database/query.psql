@@ -1,0 +1,10 @@
+-- Table users
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    mssv INTEGER,
+    role VARCHAR(50),--1:Sinh viên, --2: Giảng viên
+    joinInDate DATE,
+    status SMALLINT,--1:Đang hoạt động, 2:Rời lab, 3: Đã tốt nghiệp
+    studyFields SMALLINT[]
+);

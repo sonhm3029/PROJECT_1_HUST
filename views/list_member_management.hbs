@@ -22,8 +22,11 @@
   <div class="d-flex members-management__header bg-white p-3">
     <button class="btn btn-primary"><i class="fas fa-plus"></i>Thêm thành viên
       mới</button>
-    <button class="btn btn-secondary d-flex"> <input type="file" accept=".xlsx"><i class="fas fa-file-import"></i>Import
-      danh sách thành viên </button>
+    <button class="btn btn-secondary d-flex">
+      <input type="file" accept=".xlsx" /><i
+        class="fas fa-file-import"
+      ></i>Import danh sách thành viên
+    </button>
     <button class="btn btn-success"><i class="fas fa-file-excel"></i>Export
       excel danh sách thành viên</button>
   </div>
@@ -33,9 +36,14 @@
         <div class="col">
           <div class="form-group">
             <label for="sortby">Sắp xếp theo ngày vào lab</label>
-            <select class="form-control" id="sortby" name="sortby" value={{get query "sortby"}}>
-              <option  value="asc">Tăng dần</option>
-              <option  value="desc">Giảm dần</option>
+            <select
+              class="form-control"
+              id="sortby"
+              name="sortby"
+              value={{get query "sortby"}}
+            >
+              <option value="asc">Tăng dần</option>
+              <option value="desc">Giảm dần</option>
             </select>
           </div>
 
@@ -53,10 +61,10 @@
           <div class="form-group">
             <label for="studyfield">Lĩnh vực</label>
             <select class="form-control" id="studyfield" name="studyfield">
-              <option >Ai Machine learning</option>
-              <option >Thiết kế số</option>
-              <option >Security</option>
-              <option >Web</option>
+              <option>Ai Machine learning</option>
+              <option>Thiết kế số</option>
+              <option>Security</option>
+              <option>Web</option>
             </select>
           </div>
         </div>
@@ -73,7 +81,7 @@
     </form>
 
   </div>
-  <div class="members-management-list bg-white p-3">
+  <div class="members-management-list bg-white p-3 overflow-x-scroll">
     <table class="table table-hover">
       <thead>
         <tr>
@@ -88,46 +96,47 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="">1</td>
-          <td class="">Hoàng Minh Sơn</td>
-          <td class="">20193081</td>
-          <td class="">Sinh viên</td>
-          <td>Ai Machine Learning, Web</td>
-          <td class="">21/5/2020</td>
-          <td class="">Hoạt động</td>
-          <td class="d-flex">
-            <button
-              class="btn btn-warning d-flex justify-content-center align-items-center"
-            ><i class="fas fa-pen" style="margin-right:0px;"></i></button>
-            <button
-              class="btn btn-danger d-flex justify-content-center align-items-center"
-            ><i class="fas fa-trash" style="margin-right:0px;"></i></button>
-          </td>
-        </tr>
+        {{#each data}}
+          <tr>
+            <td class="">{{id}}</td>
+            <td class="">{{name}}</td>
+            <td class="">{{mssv}}</td>
+            <td class="">{{role}}</td>
+            <td>{{studyfields}}</td>
+            <td class="">{{joinindate}}</td>
+            <td class="">{{status}}</td>
+            <td class="d-flex">
+              <button
+                class="btn btn-warning d-flex justify-content-center align-items-center"
+              ><i class="fas fa-pen" style="margin-right:0px;"></i></button>
+              <button
+                class="btn btn-danger d-flex justify-content-center align-items-center"
+              ><i class="fas fa-trash" style="margin-right:0px;"></i></button>
+            </td>
+          </tr>
+        {{/each}}
       </tbody>
     </table>
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"
+></script>
 <script src="/js/excel/excel.js">
 </script>
 <script>
   let files = document.querySelector('input[type="file"]');
-  files.addEventListener('change', (e) => {
-    console.log(e.target.files);
-    let json = new ExcelToJSON();
-    json.parseExcel(e.target.files[0])
-  });
-  
+  files.addEventListener('change', (e) => { console.log(e.target.files); let
+  json = new ExcelToJSON(); json.parseExcel(e.target.files[0]) });
+
 </script>
 <script>
-  let formMemberFilter = document.querySelector("#member-list-filter");
-  let listFilter = formMemberFilter.querySelectorAll('select');
-  let selectedValue = {{{query}}};
-  for (let i = 0; i<listFilter.length; i++) {
-    listFilter[i].value = selectedValue[listFilter[i].name]
-  }
+  let formMemberFilter = document.querySelector("#member-list-filter"); let
+  listFilter = formMemberFilter.querySelectorAll('select'); let selectedValue =
+  {{{query}}}; for (let i = 0; i<listFilter.length; i++) { listFilter[i].value =
+  selectedValue[listFilter[i].name] }
 </script>

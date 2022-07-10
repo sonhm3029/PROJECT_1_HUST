@@ -8785,3 +8785,7 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
     cursor: pointer;
 }
 
+.overflow-x-scroll {
+    overflow-x: scroll;
+}
+

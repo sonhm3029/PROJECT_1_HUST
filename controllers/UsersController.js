@@ -1,13 +1,25 @@
 const { get } = require("../routes/events");
+const db = require("../database/index");
+const {members} = require("../constants");
 
 class UsersController {
 
-    renderListMembers(req, res, next){
+    async renderListMembers(req, res, next){
         console.log(req?.query);
+        let data = await db.query('SELECT * FROM users;');
+        console.log(data.rows);
+        data = data?.rows?.map( item => ({
+            ...item,
+            role:members.role(item?.role),
+            status:members.membersStatus(item?.status),
+            studyfields:members.studyFields(item?.studyfields),
+            joinindate: members.joinInDate(item?.joinindate)
+        }))
         res.render('list_member_management', {
             query:JSON.stringify( {
                 ...req?.query
             }),
+            data: data,
             helpers:{
                 typeof(value) {return typeof value},
                 JSONparse(value) {return JSON.parse(value)},

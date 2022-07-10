@@ -4,7 +4,7 @@
   "description": "Members:",
   "main": "app.js",
   "scripts": {
-    "build:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css",
+    "build:css": "npx tailwindcss -i ./public/stylesheets/tailwind.css -o ./public/stylesheets/style.css --watch",
     "dev": "nodemon --inspect -e js,mjs,json,hbs app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
