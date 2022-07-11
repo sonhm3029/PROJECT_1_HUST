@@ -5,16 +5,17 @@ const {members} = require("../constants");
 class UsersController {
 
     async renderListMembers(req, res, next){
-        console.log(req?.query);
+        console.log("ok",req?.query);
         let data = await db.query('SELECT * FROM users;');
-        console.log(data.rows);
+        console.log("hehe",data.rows);
         data = data?.rows?.map( item => ({
             ...item,
             role:members.role(item?.role),
             status:members.membersStatus(item?.status),
             studyfields:members.studyFields(item?.studyfields),
             joinindate: members.joinInDate(item?.joinindate)
-        }))
+        }));
+        console.log('ok');
         res.render('list_member_management', {
             query:JSON.stringify( {
                 ...req?.query
