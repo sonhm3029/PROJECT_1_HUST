@@ -11,8 +11,8 @@ module.exports = function (app) {
     app.use(morgan("combined"));
   }
   app.use(cors());
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json())
   app.use(express.static("public"));
   app.use(cookieParser());
 };
