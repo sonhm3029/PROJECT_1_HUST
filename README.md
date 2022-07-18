@@ -5,7 +5,7 @@ Members:
 - Nguyễn Ngọc Mai
 - Hoàng Minh Sơn
 
-## I. Các bước chạy project:
+## I. Các bước chạy project
 
 1. Clone project về
 2. Trong Cửa sổ terminal gõ:
@@ -35,7 +35,17 @@ views | Các file template engine ( phần UI)
 public | Gồm các thư mục chứa file image, css, js cho việc xây dựng UI/UX
 
 
-## III. Tài liệu tham khảo:
+## III. Các công nghệ dùng trong project
+
+1. Mô hình serverside rendering với Expressjs, Template Engine handlebarsjs
+2. Triển khai server với AWS:
+    - Server environment: Elastic Beanstalk
+    - Code compile và deploy lên server environment: Codepipeline
+    - Database của AWS: RDS Postgresql với setup security cho các IP theo ý muốn
+    - Cron job với lambda function và S3 của AWS để scheduled work ( auto lấy data từ google drive và upload lên database vào 6h sáng mỗi ngày)
+
+
+## IV. Tài liệu tham khảo:
 
 
 [https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment)
@@ -44,3 +54,5 @@ public | Gồm các thư mục chứa file image, css, js cho việc xây dựng
 [https://aws.amazon.com/vi/getting-started/hands-on/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/](https://aws.amazon.com/vi/getting-started/hands-on/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/)
 [https://aws.amazon.com/vi/getting-started/hands-on/build-web-app-s3-lambda-api-gateway-dynamodb/?trk=gs_card](https://aws.amazon.com/vi/getting-started/hands-on/build-web-app-s3-lambda-api-gateway-dynamodb/?trk=gs_card)
 [https://aws.amazon.com/vi/getting-started/hands-on/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/](https://aws.amazon.com/vi/getting-started/hands-on/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/)
+
+
