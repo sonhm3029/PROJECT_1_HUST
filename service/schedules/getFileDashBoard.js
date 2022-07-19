@@ -5,7 +5,7 @@ const { GoogleAuth } = require("google-auth-library");
 const { google } = require("googleapis");
 const s3 = require("../aws/s3");
 
-let cronExpress = {hour:1, minute:52};
+let cronExpress = {hour:1, minute:56};
 // let cronExpress = "*/1 * * * *";
 
 const formatNumber = (value) => {
