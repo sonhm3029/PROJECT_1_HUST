@@ -11,13 +11,6 @@ const { GoogleAuth } = require("google-auth-library");
 const { google } = require("googleapis");
 const { number } = require("prop-types");
 
-const formatNumber = (value) => {
-  if (Number(value) < 10) {
-    return `0${value}`;
-  }
-  return `${value}`;
-};
-
 class LoginController {
   render(req, res, next) {
     res.render("login", { title: "Hello there", layout: false, isAuth: false });

@@ -31,6 +31,7 @@
     "google-auth-library": "^8.1.1",
     "googleapis": "^39.2.0",
     "jsonwebtoken": "^8.5.1",
+    "node-schedule": "^2.1.0",
     "pg": "^8.7.3",
     "prop-types": "^15.8.1",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.18.9/xlsx-0.18.9.tgz"
