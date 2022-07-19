@@ -10,6 +10,14 @@ const jwt = require("jsonwebtoken");
 const { GoogleAuth } = require("google-auth-library");
 const { google } = require("googleapis");
 const { number } = require("prop-types");
+const s3 = require("../service/aws/s3");
+
+const formatNumber = (value) => {
+  if (Number(value) < 10) {
+    return `0${value}`;
+  }
+  return `${value}`;
+};
 
 class LoginController {
   render(req, res, next) {
@@ -140,8 +148,29 @@ class LoginController {
         fileId: fileId,
       })
       .then((response) => {
-        console.log(response?.data);
-        res.send(response?.data);
+        let data = response.data;
+        var todayFile = new Date()
+          .toLocaleDateString()
+          .split("/")
+          ?.map((item) => formatNumber(item));
+        todayFile = `${todayFile[2]}-${todayFile[0]}-${todayFile[1]}.json`;
+        let buf = Buffer.from(JSON.stringify(data));
+        let uploadData = {
+          Bucket: process.env.AWS_BUCKET_NAME,
+          Key: todayFile,
+          Body: buf,
+          ContentEncoding: "base64",
+          ContentType: "application/json",
+        };
+        console.log('cron job is fun');
+        s3.upload(uploadData, function (err, data) {
+          if (err) {
+            console.log(err);
+            console.log("Error uploading data: ", data);
+          } else {
+            console.log("succesfully uploaded!!!");
+          }
+        });
       })
       .catch((error) => {
         console.log(error);
