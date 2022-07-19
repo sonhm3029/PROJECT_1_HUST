@@ -89,15 +89,15 @@ const job = {
         ContentEncoding: "base64",
         ContentType: "application/json",
       };
-      console.log("HEHEHEHEHEH",s3, uploadData);
-      s3.upload(uploadData, function (err, data) {
-        if (err) {
-          console.log(err);
-          console.log("Error uploading data: ", data);
-        } else {
-          console.log("succesfully uploaded!!!");
-        }
-      });
+      console.log('cron job')
+    //   s3.upload(uploadData, function (err, data) {
+    //     if (err) {
+    //       console.log(err);
+    //       console.log("Error uploading data: ", data);
+    //     } else {
+    //       console.log("succesfully uploaded!!!");
+    //     }
+    //   });
     });
   },
 };
