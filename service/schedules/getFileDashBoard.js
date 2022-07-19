@@ -5,8 +5,8 @@ const { GoogleAuth } = require("google-auth-library");
 const { google } = require("googleapis");
 const s3 = require("../aws/s3");
 
-// let cronExpress = {hour:6, minute:30};
-let cronExpress = "* * * * * *";
+let cronExpress = { hour: 2, minute: 13 };
+// let cronExpress = "* * * * * *";
 
 const formatNumber = (value) => {
   if (Number(value) < 10) {
@@ -89,15 +89,14 @@ const job = {
         ContentEncoding: "base64",
         ContentType: "application/json",
       };
-      console.log("ok, cron job ok");
-      //   s3.upload(uploadData, function (err, data) {
-      //     if (err) {
-      //       console.log(err);
-      //       console.log("Error uploading data: ", data);
-      //     } else {
-      //       console.log("succesfully uploaded!!!");
-      //     }
-      //   });
+      s3.upload(uploadData, function (err, data) {
+        if (err) {
+          console.log(err);
+          console.log("Error uploading data: ", data);
+        } else {
+          console.log("succesfully uploaded!!!");
+        }
+      });
     });
   },
 };
