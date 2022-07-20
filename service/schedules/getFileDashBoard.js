@@ -7,8 +7,8 @@ const s3 = require("../aws/s3");
 
 let rule = new schedule.RecurrenceRule();
 rule.hour = 8;
-rule.minute = 27;
-rule.tz = 'Asia/Ho_Chi_Minh';
+rule.minute = 40;
+rule.tz = "Asia/Ho_Chi_Minh";
 // let cronExpress = { hour: 23, minute: 30 };
 // let cronExpress = "*/3* * * * *";
 
@@ -85,7 +85,12 @@ const job = {
         .split("/")
         ?.map((item) => formatNumber(item));
       todayFile = `${todayFile[2]}-${todayFile[0]}-${todayFile[1]}.json`;
-      console.log(fireDate, new Date())
+      console.log(
+        fireDate.toLocaleString("en-US", {
+          timeZone: "Asia/Ho_Chi_Minh",
+        }),
+        new Date().toLocaleString()
+      );
       let buf = Buffer.from(JSON.stringify(data));
       let uploadData = {
         Bucket: process.env.AWS_BUCKET_NAME,
