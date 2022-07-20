@@ -5,7 +5,11 @@ const { GoogleAuth } = require("google-auth-library");
 const { google } = require("googleapis");
 const s3 = require("../aws/s3");
 
-let cronExpress = { hour: 23, minute: 30 };
+let rule = new schedule.RecurrenceRule();
+rule.hour = 8;
+rule.minute = 16;
+rule.tz = 'Asia/Ho_Chi_Minh';
+// let cronExpress = { hour: 23, minute: 30 };
 // let cronExpress = "*/3* * * * *";
 
 const formatNumber = (value) => {
@@ -44,7 +48,7 @@ const processingData = (data) => {
 const job = {
   run: () => {
     console.log("Read files from google drive service is running...");
-    let cronjob = schedule.scheduleJob(cronExpress, async (fireDate) => {
+    let cronjob = schedule.scheduleJob(rule, async (fireDate) => {
       const oauth2Client = new google.auth.OAuth2(
         process.env.CLIENT_ID,
         process.env.CLIENT_SECRET,
@@ -89,7 +93,6 @@ const job = {
         ContentEncoding: "base64",
         ContentType: "application/json",
       };
-      console.log('cron job is fun');
       s3.upload(uploadData, function (err, data) {
         if (err) {
           console.log(err);
@@ -98,7 +101,6 @@ const job = {
           console.log("succesfully uploaded!!!");
         }
       });
-      console.log("cron job is ok")
     });
   },
 };
