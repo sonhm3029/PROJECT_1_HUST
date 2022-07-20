@@ -4,10 +4,11 @@ const db = require("../../database");
 const { GoogleAuth } = require("google-auth-library");
 const { google } = require("googleapis");
 const s3 = require("../aws/s3");
+const moment = require("moment-timezone");
 
 let rule = new schedule.RecurrenceRule();
 rule.hour = 8;
-rule.minute = 40;
+rule.minute = 59;
 rule.tz = "Asia/Ho_Chi_Minh";
 // let cronExpress = { hour: 23, minute: 30 };
 // let cronExpress = "*/3* * * * *";
@@ -21,11 +22,9 @@ const formatNumber = (value) => {
 
 const getFileId = async (service, fireDate) => {
   try {
-    var todayFile = fireDate
-      .toLocaleDateString()
-      .split("/")
-      ?.map((item) => formatNumber(item));
-    todayFile = `${todayFile[2]}-${todayFile[0]}-${todayFile[1]}.json`;
+    var todayFile = `${moment()
+      .tz("Asia/Ho_Chi_Minh")
+      .format('YYYY-MM-DD')}.json`;
     let res = await service.files.list({
       q: "parents='1SKMy1V4PQZtX4UsbC-IZpi7sm_Bda4EJ'",
     });
@@ -80,17 +79,10 @@ const job = {
       });
       //   data = processingData(data);
 
-      var todayFile = fireDate
-        .toLocaleDateString()
-        .split("/")
-        ?.map((item) => formatNumber(item));
-      todayFile = `${todayFile[2]}-${todayFile[0]}-${todayFile[1]}.json`;
-      console.log(
-        fireDate.toLocaleString("en-US", {
-          timeZone: "Asia/Ho_Chi_Minh",
-        }),
-        new Date().toLocaleString()
-      );
+      var todayFile = `${moment()
+        .tz("Asia/Ho_Chi_Minh")
+        .format('YYYY-MM-DD')}.json`;
+      console.log(moment().tz('Asis/Ho_Chi_Minh'));
       let buf = Buffer.from(JSON.stringify(data));
       let uploadData = {
         Bucket: process.env.AWS_BUCKET_NAME,
