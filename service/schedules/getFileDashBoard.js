@@ -7,8 +7,8 @@ const s3 = require("../aws/s3");
 const moment = require("moment-timezone");
 
 let rule = new schedule.RecurrenceRule();
-rule.hour = 8;
-rule.minute = 59;
+rule.hour = 6;
+rule.minute = 30;
 rule.tz = "Asia/Ho_Chi_Minh";
 // let cronExpress = { hour: 23, minute: 30 };
 // let cronExpress = "*/3* * * * *";
@@ -82,7 +82,7 @@ const job = {
       var todayFile = `${moment()
         .tz("Asia/Ho_Chi_Minh")
         .format('YYYY-MM-DD')}.json`;
-      console.log(moment().tz('Asis/Ho_Chi_Minh'));
+      console.log(moment().tz('Asia/Ho_Chi_Minh'));
       let buf = Buffer.from(JSON.stringify(data));
       let uploadData = {
         Bucket: process.env.AWS_BUCKET_NAME,
