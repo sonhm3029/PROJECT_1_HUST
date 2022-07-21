@@ -5,13 +5,14 @@ const { GoogleAuth } = require("google-auth-library");
 const { google } = require("googleapis");
 const s3 = require("../aws/s3");
 const moment = require("moment-timezone");
+const fs = require("fs");
 
 let rule = new schedule.RecurrenceRule();
-rule.hour = 10;
-rule.minute = 53;
+rule.hour = 11;
+rule.minute = 02;
 rule.tz = "Asia/Ho_Chi_Minh";
-// let cronExpress = { hour: 23, minute: 30 };
-// let cronExpress = "*/3* * * * *";
+
+// let rule = "* * * * * *";
 
 const formatNumber = (value) => {
   if (Number(value) < 10) {
@@ -24,7 +25,7 @@ const getFileId = async (service, fireDate) => {
   try {
     var todayFile = `${moment()
       .tz("Asia/Ho_Chi_Minh")
-      .format('YYYY-MM-DD')}.json`;
+      .format("YYYY-MM-DD")}.json`;
     let res = await service.files.list({
       q: "parents='1SKMy1V4PQZtX4UsbC-IZpi7sm_Bda4EJ'",
     });
@@ -32,7 +33,7 @@ const getFileId = async (service, fireDate) => {
     let fileArr = res?.data?.files;
     let newFile = fileArr?.filter((item) => item?.name === todayFile);
     if (newFile?.length > 0) {
-      return newFile[0]?.id;
+      return [newFile[0]?.id, fileArr];
     }
   } catch (err) {
     console.log(err);
@@ -40,7 +41,7 @@ const getFileId = async (service, fireDate) => {
 };
 
 const processingData = (data) => {
-  console.log(data);
+  let dataKey = Object.keys(data);
   return data;
 };
 
@@ -72,25 +73,24 @@ const job = {
         ],
       });
 
-      let fileId = await getFileId(service, fireDate);
+      let [fileId, fileArr] = await getFileId(service, fireDate);
       let { data } = await service.files.get({
         alt: "media",
         fileId: fileId,
       });
-      //   data = processingData(data);
-
+      data = processingData(data);
       var todayFile = `${moment()
         .tz("Asia/Ho_Chi_Minh")
-        .format('YYYY-MM-DD')}.json`;
-      console.log(moment().tz('Asia/Ho_Chi_Minh'));
+        .format("YYYY-MM-DD")}.json`;
       let buf = Buffer.from(JSON.stringify(data));
       let uploadData = {
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: todayFile,
+        Key: `visualize/${todayFile}`,
         Body: buf,
         ContentEncoding: "base64",
         ContentType: "application/json",
       };
+      // UPload current day file
       s3.upload(uploadData, function (err, data) {
         if (err) {
           console.log(err);
@@ -99,6 +99,7 @@ const job = {
           console.log("succesfully uploaded!!!");
         }
       });
+      // Upload total calculated file
     });
   },
 };

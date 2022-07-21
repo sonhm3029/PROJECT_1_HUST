@@ -43,6 +43,7 @@ public | Gồm các thư mục chứa file image, css, js cho việc xây dựng
     - Code compile và deploy lên server environment: Codepipeline
     - Database của AWS: RDS Postgresql với setup security cho các IP theo ý muốn
     - Cron job với lambda function và S3 của AWS để scheduled work ( auto lấy data từ google drive và upload lên database vào 6h sáng mỗi ngày)
+    - Sử dụng S3 để lưu trữ và truy xuất dữ liệu.
 
 
 ## IV. Tài liệu tham khảo:
