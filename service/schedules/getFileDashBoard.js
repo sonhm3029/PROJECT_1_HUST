@@ -8,8 +8,8 @@ const moment = require("moment-timezone");
 const fs = require("fs");
 
 let rule = new schedule.RecurrenceRule();
-rule.hour = 11;
-rule.minute = 02;
+rule.hour = 6;
+rule.minute = 30;
 rule.tz = "Asia/Ho_Chi_Minh";
 
 // let rule = "* * * * * *";
