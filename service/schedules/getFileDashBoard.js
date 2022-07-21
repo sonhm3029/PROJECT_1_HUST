@@ -7,8 +7,8 @@ const s3 = require("../aws/s3");
 const moment = require("moment-timezone");
 
 let rule = new schedule.RecurrenceRule();
-rule.hour = 6;
-rule.minute = 30;
+rule.hour = 10;
+rule.minute = 53;
 rule.tz = "Asia/Ho_Chi_Minh";
 // let cronExpress = { hour: 23, minute: 30 };
 // let cronExpress = "*/3* * * * *";
