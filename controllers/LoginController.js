@@ -29,7 +29,6 @@ class LoginController {
     try {
       let data = await db.query(
         accountModel.search({
-          table: "account",
           field: ["password", "id"],
           condition: "username=$1",
         }),

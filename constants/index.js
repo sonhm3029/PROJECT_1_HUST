@@ -12,7 +12,6 @@ const members = {
     }
   },
   studyFields: (arr) => {
-    console.log(arr);
     return arr
       ?.map((field) => {
         switch (field) {
@@ -43,6 +42,26 @@ const members = {
   }
 };
 
+const studyFields = [
+  {
+    label:"Ai - Machine Learning",
+    value:1
+  },
+  {
+    label:"FPGA",
+    value:2
+  },
+  {
+    label:"Thiết kế số",
+    value:3
+  },
+  {
+    label:"Khác",
+    value:4
+  }
+]
+
 module.exports = {
     members,
+    studyFields
 };

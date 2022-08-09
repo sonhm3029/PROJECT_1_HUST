@@ -168,7 +168,11 @@
         Tin tức, sự kiện nổi bật
       </div>
       <div class="card-body px-0 py-0 p-4">
-        <div id="tin-tuc-su-kien" class="carousel slide mb-3" data-ride="carousel">
+        <div
+          id="tin-tuc-su-kien"
+          class="carousel slide mb-3"
+          data-ride="carousel"
+        >
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img
@@ -255,5 +259,15 @@
   </div>
 </div>
 <div class="row">
-  
+
 </div>
+<script src="/js/charts/index.js">
+
+</script>
+<script type="text/javascript">
+  let dataPieChart ={{{dataPieChart}}}; 
+  let dataLineChart ={{{dataLineChart}}}; 
+  console.log(dataLineChart);
+  initPieChart(dataPieChart, document.getElementById("pie-chart-lab-field__wrapper"))
+  initLineChart(dataLineChart, document.getElementById("monthly-main-bar-chart"));
+</script>

@@ -2,7 +2,7 @@ const db = require("./index");
 const method = require("../query");
 
 const accountModel = {
-    ...method
+    ...method('account')
 };
 
 module.exports = accountModel;
