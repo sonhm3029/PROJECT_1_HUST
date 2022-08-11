@@ -42,7 +42,14 @@
         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
           <div class="form-group">
             <label for="date-filter">Chọn lọc theo ngày</label>
-            <input type="date" class="form-control" name="date" value={{currentChoseDate}} max={{today}} min="2022-07-20" />
+            <input
+              type="date"
+              class="form-control"
+              name="date"
+              value={{currentChoseDate}}
+              max={{today}}
+              min="2022-07-20"
+            />
           </div>
         </div>
 
@@ -57,9 +64,14 @@
         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
           <div class="form-group">
             <label style="margin-bottom:0px;"></label>
-            <button type="button" class="btn btn-success form-control mt-2"><i
-                class="fas fa-file-excel"
-              ></i>Xuất file json</button>
+            <a
+              target="_blank"
+              href={{combineString "/download?fileName=" downloadFileName}}
+            >
+              <button type="button" class="btn btn-success form-control mt-2">
+                <i class="fas fa-file-excel"></i>Xuất file json
+              </button>
+            </a>
           </div>
         </div>
       </form>
@@ -94,7 +106,8 @@
 </div>
 <script src="/js/charts/index.js"></script>
 <script>
-  let todayLineChartData ={{{todayLineChartData}}}; 
-  let currentChoseDate = {{{currentChoseDate}}}
-  initLineChart(todayLineChartData,document.getElementById("in-out-chart-all"), `Biểu đồ thống kê lượt ra vào lab trong ngày ${currentChoseDate}`);
+  let todayLineChartData ={{{todayLineChartData}}};
+  let currentChoseDate = {{{JSONparse currentChoseDate}}}; 
+  currentChoseDate = currentChoseDate.split("-").reverse().join("-");
+  initLineChart(todayLineChartData,document.getElementById("in-out-chart-all"),`Biểu đồ thống kê lượt ra vào lab trong ngày ${currentChoseDate}`);
 </script>

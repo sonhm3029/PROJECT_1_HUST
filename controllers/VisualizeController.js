@@ -53,11 +53,15 @@ class VisualizeController {
     var detailData;
     [todayLineChartData, detailData] =
       processingLineChartData(todayLineChartData);
+    console.log(req?.query?.date || moment().format("YYYY-MM-DD"));
     res.render("datavisualizeall", {
       todayLineChartData: JSON.stringify(todayLineChartData),
       detailData,
       today: moment().format("YYYY-MM-DD"),
       currentChoseDate: req?.query?.date || moment().format("YYYY-MM-DD"),
+      downloadFileName: `visualize/${
+        req?.query?.date || moment().format("YYYY-MM-DD")
+      }.json`,
     });
   }
 
