@@ -23,27 +23,41 @@ const getFileData = async function (fileName) {
 const processingLineChartData = (data) => {
   let flattenData = Object.values(data).flat();
   let uniqueTimePoints = [...new Set(flattenData?.map((item) => item?.Time))];
-  let result = uniqueTimePoints?.map((timePoint) => {
+  let dataChart = uniqueTimePoints?.map((timePoint) => {
     let time = new Date(timePoint);
     let value = flattenData?.filter((item) => item?.Time === timePoint).length;
     return [timePoint, value];
   });
-  return result;
+  let detailData = uniqueTimePoints?.map((timePoint) => ({
+    timePoint,
+    objectDetect: flattenData
+      ?.filter((item) => item?.Time === timePoint)
+      ?.map((data) => data?.Name)
+      ?.join(", "),
+  }));
+  return [dataChart, detailData];
 };
 
 class VisualizeController {
   async renderAll(req, res, next) {
     const currentTime = moment().hour();
     const currentMinute = moment().minute();
-    const todayFileName =
+    let todayFileName =
       currentTime > 6 || (currentTime == 6 && currentMinute > 30)
         ? `visualize/${moment().format("YYYY-MM-DD")}.json`
         : `visualize/${moment().subtract(1, "days").format("YYYY-MM-DD")}.json`;
-    console.log(todayFileName);
+    if (req?.query?.date) {
+      todayFileName = `visualize/${req?.query?.date}.json`;
+    }
     let todayLineChartData = await getFileData(todayFileName);
-    todayLineChartData = processingLineChartData(todayLineChartData);
+    var detailData;
+    [todayLineChartData, detailData] =
+      processingLineChartData(todayLineChartData);
     res.render("datavisualizeall", {
-      todayLineChartData:JSON.stringify(todayLineChartData),
+      todayLineChartData: JSON.stringify(todayLineChartData),
+      detailData,
+      today: moment().format("YYYY-MM-DD"),
+      currentChoseDate: req?.query?.date || moment().format("YYYY-MM-DD"),
     });
   }
 

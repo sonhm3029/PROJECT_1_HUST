@@ -1,8 +1,11 @@
-function initPieChart(data, chartDom) {
+function initPieChart(data, chartDom, chartTitle = "") {
   var myChart = echarts.init(chartDom);
   var option;
 
   option = {
+    title: {
+      text: chartTitle,
+    },
     tooltip: {
       trigger: "item",
     },
@@ -43,12 +46,15 @@ function initPieChart(data, chartDom) {
   option && myChart.setOption(option);
 }
 
-function initLineChart(data, chartDom) {
+function initLineChart(data, chartDom, chartTitle = "") {
   var myChart = echarts.init(chartDom);
   var option;
 
   const dataCount = 5e5;
   option = {
+    title: {
+      text: chartTitle,
+    },
     toolbox: {
       feature: {
         dataZoom: {

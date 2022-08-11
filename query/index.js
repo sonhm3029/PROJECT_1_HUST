@@ -1,6 +1,6 @@
 const queryBase = function (table) {
   return {
-    search: ({field = [], condition = "TRUE" }) => {
+    search: ({ field = [], condition = "TRUE" }) => {
       field = field?.length > 0 ? field : ["*"];
       fieldQuery = field?.join(",");
       return `SELECT ${fieldQuery} FROM ${table} WHERE ${condition}`;
@@ -8,6 +8,11 @@ const queryBase = function (table) {
     create: () => {},
     upadte: () => {},
     delete: () => {},
+    count: ({ field = [], condition = "TRUE" }) => {
+      field = field?.length > 0 ? field : ["*"];
+      fieldQuery = field?.join(",");
+      return `SELECT COUNT(${fieldQuery}) AS Total FROM ${table} WHERE ${condition}`;
+    },
   };
 };
 

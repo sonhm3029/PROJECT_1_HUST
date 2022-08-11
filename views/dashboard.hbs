@@ -25,7 +25,7 @@
         <div class="row align-items-center m-b-25">
           <div class="col">
             <h6 class="m-b-5 text-white">Tổng số thành viên</h6>
-            <h3 class="m-b-0 text-white">$1,783</h3>
+            <h3 class="m-b-0 text-white">{{totalMembers}}</h3>
           </div>
           <div class="col-auto">
             <i class="fas fa-users text-c-red f-18"></i>
@@ -61,7 +61,7 @@
         <div class="row align-items-center m-b-25">
           <div class="col">
             <h6 class="m-b-5 text-white">Số lượt ra vào lab</h6>
-            <h3 class="m-b-0 text-white">$6,780</h3>
+            <h3 class="m-b-0 text-white">{{totalNumberInOut}}</h3>
           </div>
           <div class="col-auto">
             <i class="fas fa-users-cog text-c-green f-18"></i>
@@ -133,27 +133,15 @@
               </tr>
             </thead>
             <tbody>
+              {{#each topTenInOutLab}}
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>12/10/2022</td>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td></td>
+                <td>{{this.valueCount}}</td>
+                <td>{{this.lastInOutLab}}</td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>12/10/2022</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry the Bird</td>
-                <td>@twitter</td>
-                <td>@fat</td>
-                <td>12/10/2022</td>
-              </tr>
+              {{/each}}  
             </tbody>
           </table>
         </div>
@@ -267,7 +255,6 @@
 <script type="text/javascript">
   let dataPieChart ={{{dataPieChart}}}; 
   let dataLineChart ={{{dataLineChart}}}; 
-  console.log(dataLineChart);
   initPieChart(dataPieChart, document.getElementById("pie-chart-lab-field__wrapper"))
   initLineChart(dataLineChart, document.getElementById("monthly-main-bar-chart"));
 </script>

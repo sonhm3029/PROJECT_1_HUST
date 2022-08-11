@@ -42,7 +42,7 @@
         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
           <div class="form-group">
             <label for="date-filter">Chọn lọc theo ngày</label>
-            <input type="date" class="form-control" name="date" value="" />
+            <input type="date" class="form-control" name="date" value={{currentChoseDate}} max={{today}} min="2022-07-20" />
           </div>
         </div>
 
@@ -59,7 +59,7 @@
             <label style="margin-bottom:0px;"></label>
             <button type="button" class="btn btn-success form-control mt-2"><i
                 class="fas fa-file-excel"
-              ></i>Xuất excel</button>
+              ></i>Xuất file json</button>
           </div>
         </div>
       </form>
@@ -73,13 +73,28 @@
   <div class="detail-info-from-chart p-3 bg-white mt-3">
     <div class="row">
       <div class="col-lg-3 col-md-3">
-        <button class="btn btn-primary">Xem chi tiết dữ liệu</button>
+        <button
+          class="btn btn-primary"
+          data-toggle="collapse"
+          href="#collapseContenDetail"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseContent"
+        >Xem chi tiết dữ liệu</button>
+      </div>
+    </div>
+    <div class="collapse mt-3" id="collapseContenDetail">
+      <div class="card card-body">
+        {{#each detailData}}
+          <p><span>{{this.timePoint}} :</span> {{this.objectDetect}} </p>
+        {{/each}}
       </div>
     </div>
   </div>
 </div>
 <script src="/js/charts/index.js"></script>
 <script>
-  let todayLineChartData = {{{todayLineChartData}}};
-  initLineChart(todayLineChartData, document.getElementById("in-out-chart-all"));
+  let todayLineChartData ={{{todayLineChartData}}}; 
+  let currentChoseDate = {{{currentChoseDate}}}
+  initLineChart(todayLineChartData,document.getElementById("in-out-chart-all"), `Biểu đồ thống kê lượt ra vào lab trong ngày ${currentChoseDate}`);
 </script>

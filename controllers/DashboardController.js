@@ -37,8 +37,12 @@ const processingFieldData = (listFieldsData) => {
 };
 
 const processingLineChartData = (data) => {
-  data = data?.map((fileData) => {
+  let flattenDataAll = data
+    ?.map((fileData) => Object.values(fileData).flat())
+    .flat();
+  let lineChartData = data?.map((fileData) => {
     let flattenData = Object.values(fileData).flat();
+    // Calculate data for line chart
     let uniqueTimePoints = [...new Set(flattenData?.map((item) => item?.Time))];
     let result = uniqueTimePoints?.map((timePoint) => {
       let time = new Date(timePoint);
@@ -49,7 +53,25 @@ const processingLineChartData = (data) => {
     });
     return result;
   });
-  return data.flat();
+  // Calculate top in-out-lab
+  let dataInOutLab = [
+    ...new Set(flattenDataAll?.map((item) => item?.Name)),
+  ]?.map((member) => ({
+    name: member,
+    valueCount: flattenDataAll?.filter((item) => item?.Name === member)?.length,
+    lastInOutLab: Math.max(
+      ...flattenDataAll
+        ?.filter((item) => item?.Name === member)
+        ?.map((data) => +new Date(data?.Time))
+    ),
+  }));
+  let topTenInOutLab = dataInOutLab
+    ?.sort((item1, item2) => {
+      // Sort desc
+      return item2?.valueCount - item1?.valueCount;
+    })
+    ?.slice(0, 10);
+  return [lineChartData.flat(), topTenInOutLab];
 };
 
 class DashboardController {
@@ -62,6 +84,18 @@ class DashboardController {
         field: ["studyfields"],
       })
     );
+    // Get data tổng thành viên
+    const totalMembers = Number(
+      (
+        await db.query(
+          membersModel.count({
+            field: ["id"],
+          })
+        )
+      )?.rows[0]?.total
+    );
+    // Số thành viên hoạt động
+    // Số các khóa training
     const dataPieChart = processingFieldData(listFieldsData?.rows);
 
     // Get data tan suat ra vao lab trong thang
@@ -77,10 +111,28 @@ class DashboardController {
             let dataLineChart = result?.map((item) =>
               JSON.parse(item?.Body.toString())
             );
-            dataLineChart = processingLineChartData(dataLineChart);
+            var topTenInOutLab;
+            [dataLineChart, topTenInOutLab] =
+              processingLineChartData(dataLineChart);
+            topTenInOutLab = topTenInOutLab?.map((item) => ({
+              ...item,
+              lastInOutLab: moment(item?.lastInOutLab)?.format(
+                "DD-MM-YYYY HH:mm:ss"
+              ),
+            }));
+            console.log(topTenInOutLab);
+            // Số lượt ra vào lab:
+            let totalNumberInOut = dataLineChart?.reduce(
+              (total, item) => total + item[1],
+              0
+            );
+            // Top ra vào lab
             res.render("dashboard", {
               dataLineChart: JSON.stringify(dataLineChart),
               dataPieChart: JSON.stringify(dataPieChart),
+              totalMembers,
+              totalNumberInOut,
+              topTenInOutLab
             });
           })
           .catch((err) => {
